@@ -37,5 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void spara(View view) {
 
+        EditText newPrefText=new EditText(this);
+        newPrefText=(EditText)findViewById(R.id.edit_text);
+
+        myPreferenceEditor.putString("MyAppPreferenceString", newPrefText.getText().toString());
+        myPreferenceEditor.apply();
+
+        TextView prefTextRef=new TextView(this);
+        prefTextRef=(TextView)findViewById(R.id.name);
+        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
+
+        newPrefText.setText("");
     }
 }
