@@ -11,10 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textViewname;
-    EditText editText;
-    Button button;
-    SharedPreferences preferences;
+    private SharedPreferences myPreferenceRef;
+    private SharedPreferences.Editor myPreferenceEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,24 +21,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textViewname = findViewById(R.id.name);
-        editText = findViewById(R.id.edit_text);
-        button = findViewById(R.id.edit_button);
+        myPreferenceRef = getPreferences(MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();
 
-        preferences = getSharedPreferences("preferences",MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("namn","");
-        editor.apply();
 
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+        TextView prefTextRef=new TextView(this);
+        prefTextRef=(TextView)findViewById(R.id.name);
+        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
 
-        SharedPreferences preferences = getSharedPreferences("preferences",MODE_PRIVATE);
-        String name = preferences.getString("name","inget namn hittades");
-        textViewname.setText(name);
 
     }
+
+
 }
