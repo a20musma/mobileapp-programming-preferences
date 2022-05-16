@@ -1,7 +1,52 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+**
+
+Shared Preferences is the way in which one can store and retrieve small amounts of primitive data as key/value pairs to a file on the device storage such as String, int, float, Boolean that make up your preferences in an XML file inside the app on the device storage.
+```
+          final EditText editText = findViewById(R.id.edit_text);
+        Button button = findViewById(R.id.edit_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value = editText.getText().toString().trim();
+                SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("value", value);
+                editor.apply();
+                Intent intent = new Intent(SegondActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+```
+This is How i use the text edit and saved store in diferent activiti within app.
+
+```
+        Button button = findViewById(R.id.edit_button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, SegondActivity.class);
+                startActivity(intent);
+            }
+        });
+```
+This code is how i go back in edit text with the help of this button.
+
+```
+        TextView textView = findViewById(R.id.name);
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        String value = sharedPreferences.getString("value", "");
+        textView.setText(value);
+```
+And this code is how the store is saved in MainActivity.
+
+
+
+
+**
 
 _Du kan ta bort all text som finns sedan tidigare_.
 
@@ -16,24 +61,37 @@ _Du kan ta bort all text som finns sedan tidigare_.
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+```
+        TextView textView = findViewById(R.id.name);
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        String value = sharedPreferences.getString("value", "");
+        textView.setText(value);
+```
+
+```
+        Button button = findViewById(R.id.edit_button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, SegondActivity.class);
+                startActivity(intent);
+            }
+        });
+```
+
+```
+        TextView textView = findViewById(R.id.name);
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        String value = sharedPreferences.getString("value", "");
+        textView.setText(value);
+```
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](pic1.png)
+![](pic2.png)
 
 Läs gärna:
 
